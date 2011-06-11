@@ -1,0 +1,74 @@
+ _____________
+/\            \
+\_| my_js_lib |
+  |   ________|_
+   \_/__________/
+
+
+Requires jQuery.
+
+
+FILES
+
+* contrib.js: Useful functions made by other people
+* Controller.js: An MVC controller, for ASCII animation
+* Rectangle.js: A 2D rectangle class
+* Timer.js: A ticking timer, for ASCII animation
+* Vector.js: A 2D vector class
+* View.js: An MVC view, for ASCII animation
+
+
+ASCII ANIMATION FRAMEWORK
+
+A very crude MVC framework for ASCII animation. You need to provide a
+model class that has a .elements() function, a .step() function and a
+.destroy() function.
+
+model.elements() must return an array of model element objects. Each object
+must implement the following functions:
+
+.getText() - Returns the text that goes on the element in the view.
+.getColour() - Returns the colour of the element
+.getZIndex() - Returns the z-index of the element
+
+model.step is called on every timer tick, and is where the model
+performs its updates.  model.destroy() is a destructor.
+
+The Controller takes a model, a view and a frame rate in its
+constructor, so those objects must have been created at that point.
+
+The View constructor takes as arguments the ID of an existing HTML
+element and a magnification factor.
+
+Here is an example of use in client code (using the classes from the
+ants_simulation repo https://github.com/andreasjansson/ants_simulation):
+
+$(function() {
+
+	var world, view, controller, started = false;
+
+	function init() {
+		world = new World();
+		world.start();
+		for(i = 0; i < 100; i ++)
+			world.step();
+		for(i = 0; i < 8; i ++)
+			world.createFood(true);
+
+		view = new View("ants", 10, 5);
+		controller = new Controller(world, view, 10);
+	}
+
+	init();
+	controller.tick();
+
+	$("#startAnts").click(function() {
+		if(started) {
+			controller.destroy();
+			init();
+		}
+		controller.start();
+		started = true;
+	});
+	
+});
