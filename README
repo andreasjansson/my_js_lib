@@ -1,4 +1,4 @@
- _____________
+_____________
 /\            \
 \_| my_js_lib |
   |   ________|_
@@ -45,30 +45,30 @@ ants_simulation repo https://github.com/andreasjansson/ants_simulation):
 
 $(function() {
 
-	var world, view, controller, started = false;
+  var world, view, controller, started = false;
 
-	function init() {
-		world = new World();
-		world.start();
-		for(i = 0; i < 100; i ++)
-			world.step();
-		for(i = 0; i < 8; i ++)
-			world.createFood(true);
+  function init() {
+    world = new World();
+    world.start();
+    for(i = 0; i < 100; i ++)
+      world.step();
+    for(i = 0; i < 8; i ++)
+      world.createFood(true);
 
-		view = new View("ants", 10, 5);
-		controller = new Controller(world, view, 10);
-	}
+    view = new View("ants", 10, 5);
+    controller = new Controller(world, view, 10);
+  }
 
-	init();
-	controller.tick();
+  init();
+  controller.step();
 
-	$("#startAnts").click(function() {
-		if(started) {
-			controller.destroy();
-			init();
-		}
-		controller.start();
-		started = true;
-	});
-	
+  $("#startAnts").click(function() {
+    if(started) {
+      controller.destroy();
+      init();
+    }
+    controller.start();
+    started = true;
+  });
+  
 });

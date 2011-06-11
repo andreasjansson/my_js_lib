@@ -18,23 +18,23 @@
 
 Timer = function(fps)
 {
-	this.fps = fps;
-	this.intervalID = null;
+  this.fps = fps;
+  this.intervalID = null;
 }
 
 Timer.prototype.start = function()
 {
-	var self = this;
-	this.intervalID = window.setInterval(function() {
-		if(self.tick)
-			self.tick();
-	}, 1000 / this.fps);
+  var self = this;
+  this.intervalID = window.setInterval(function() {
+    if(self.tick)
+      self.tick();
+  }, 1000 / this.fps);
 }
 
 Timer.prototype.stop = function()
 {
-	if(this.intervalID) {
-		window.clearInterval(this.intervalID);
-		this.intervalID = null;
-	}
+  if(this.intervalID) {
+    window.clearInterval(this.intervalID);
+    this.intervalID = null;
+  }
 }

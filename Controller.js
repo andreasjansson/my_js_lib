@@ -18,41 +18,41 @@
 
 Controller = function(model, view, fps)
 {
-	this.model = model;
-	this.view = view;
-	this.timer = new Timer(fps);
+  this.model = model;
+  this.view = view;
+  this.timer = new Timer(fps);
 
-	var self = this;
+  var self = this;
 
-	this.timer.tick = function() {
-		self.step();
-	}
+  this.timer.tick = function() {
+    self.step();
+  }
 
-	this.model.onComplete = function() {
-		self.timer.stop();
-		if(self.onComplete) {
-			// a final draw
-			self.view.draw(self.model.elements());
-			self.onComplete();
-		}
-	}
+  this.model.onComplete = function() {
+    self.timer.stop();
+    if(self.onComplete) {
+      // a final draw
+      self.view.draw(self.model.elements());
+      self.onComplete();
+    }
+  }
 }
 
 Controller.prototype.start = function()
 {
-	this.view.draw(this.model.elements());
-	this.timer.start();
+  this.view.draw(this.model.elements());
+  this.timer.start();
 }
 
 Controller.prototype.step = function()
 {
-	this.model.step();
-	this.view.draw(this.model.elements());
+  this.model.step();
+  this.view.draw(this.model.elements());
 }
 
 Controller.prototype.destroy = function()
 {
-	this.timer.stop(); // clear old timer
-	this.view.destroy();
-	this.model.destroy();
+  this.timer.stop(); // clear old timer
+  this.view.destroy();
+  this.model.destroy();
 }

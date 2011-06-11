@@ -18,27 +18,27 @@
 
 View = function(id, scale)
 {
-	this.$container = $("#" + id);
-	this.scale = scale;
+  this.$container = $("#" + id);
+  this.scale = scale;
 }
 
 View.prototype.draw = function(elements)
 {
-	this.$container.empty();
-	for(var i = 0; i < elements.length; i ++) {
-		// make sure element exists
-		var element = elements[i];
-		if(element) {
-			this.$container.append($("<div style='z-index: " + element.getZIndex() +
-															 "; color: " + element.getColour() +
-															 "; left: " + (element.position.x * this.scale) +
-															 "px; top: " + (element.position.y * this.scale)+
-															 "px'>" + element.getText() + "</div>"));
-		}
-	}
+  this.$container.empty();
+  for(var i = 0; i < elements.length; i ++) {
+    // make sure element exists
+    var element = elements[i];
+    if(element) {
+      this.$container.append($("<div style='z-index: " + element.getZIndex() +
+                               "; color: " + element.getColour() +
+                               "; left: " + (element.position.x * this.scale) +
+                               "px; top: " + (element.position.y * this.scale)+
+                               "px'>" + element.getText() + "</div>"));
+    }
+  }
 }
 
 View.prototype.destroy = function()
 {
-	this.$container.empty();
+  this.$container.empty();
 }

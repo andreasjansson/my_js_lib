@@ -18,47 +18,46 @@
 
 Rectangle = function(arg1, arg2, arg3, arg4)
 {
-	if(typeof arg4 == "undefined") {
-		this.topLeft = arg1;
-		this.bottomRight = arg2;
-	}
-	else {
-		this.topLeft = new Vector(arg1, arg2);
-		this.bottomRight = new Vector(arg3, arg4);		
-	}
+  if(typeof arg4 == "undefined") {
+    this.topLeft = arg1;
+    this.bottomRight = arg2;
+  }
+  else {
+    this.topLeft = new Vector(arg1, arg2);
+    this.bottomRight = new Vector(arg3, arg4);    
+  }
 }
 
 Rectangle.prototype.width = function()
 {
-	return this.bottomRight.x - this.topLeft.x;
+  return this.bottomRight.x - this.topLeft.x;
 }
 
 Rectangle.prototype.height = function()
 {
-	return this.bottomRight.y - this.topLeft.y;
+  return this.bottomRight.y - this.topLeft.y;
 }
 
 Rectangle.prototype.area = function()
 {
-	return this.width() * this.height();
+  return this.width() * this.height();
 }
 
 Rectangle.prototype.contains = function(point, includeTopLeft,
-																				includeBottomRight)
+                                        includeBottomRight)
 {
-	if(typeof includeTopLeft == 'undefined')
-		includeTopLeft = true;
-	if(typeof includeBottomRight == 'undefined')
-		includeBottomRight = false;
+  if(typeof includeTopLeft == 'undefined')
+    includeTopLeft = true;
+  if(typeof includeBottomRight == 'undefined')
+    includeBottomRight = false;
 
-	return (
-		includeTopLeft ?
-			this.topLeft.x <= point.x && this.topLeft.y  <= point.y :
-			this.topLeft.x < point.x && this.topLeft.y  < point.y
-	) && (
-		includeBottomRight ?
-			this.bottomRight.x >= point.x && this.bottomRight.y >= point.y :
-			this.bottomRight.x > point.x && this.bottomRight.y > point.y
-	);
-yes
+  return (
+    includeTopLeft ?
+      this.topLeft.x <= point.x && this.topLeft.y  <= point.y :
+      this.topLeft.x < point.x && this.topLeft.y  < point.y
+  ) && (
+    includeBottomRight ?
+      this.bottomRight.x >= point.x && this.bottomRight.y >= point.y :
+      this.bottomRight.x > point.x && this.bottomRight.y > point.y
+  );
 }
