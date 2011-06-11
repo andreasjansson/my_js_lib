@@ -1,5 +1,5 @@
 /*
- * ant_simulation - A naive Javascript simulation of an ant colony
+ * my_js_lib
  * Copyright (C) 2011 Andreas Jansson
  *
  * This program is free software: you can redistribute it and/or modify
