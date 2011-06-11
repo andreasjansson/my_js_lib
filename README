@@ -38,7 +38,9 @@ The Controller takes a model, a view and a frame rate in its
 constructor, so those objects must have been created at that point.
 
 The View constructor takes as arguments the ID of an existing HTML
-element and a magnification factor.
+element and a magnification factor. Note: In the stylesheet you need
+to make all child divs of the View node absolutely positioned.
+Otherwise nothing will work.
 
 Here is an example of use in client code (using the classes from the
 ants_simulation repo https://github.com/andreasjansson/ants_simulation):
