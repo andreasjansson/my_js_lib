@@ -27,9 +27,13 @@ model class that has a .elements() function, a .step() function and a
 model.elements() must return an array of model element objects. Each object
 must implement the following functions:
 
-.getText() - Returns the text that goes on the element in the view.
-.getColour() - Returns the colour of the element
-.getZIndex() - Returns the z-index of the element
+.getPosition() - Returns a vector of the current position
+.getText()     - Returns the text that goes on the element in the view
+.getColour()   - Returns the colour of the element
+.getZIndex()   - Returns the z-index of the element
+
+Each returned element object must also have a position variable,
+which is a Vector object.
 
 model.step is called on every timer tick, and is where the model
 performs its updates.  model.destroy() is a destructor.

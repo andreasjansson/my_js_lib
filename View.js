@@ -16,23 +16,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-View = function(id, scale)
+View = function(id, scale, clear)
 {
   this.$container = $("#" + id);
   this.scale = scale;
+  if(typeof clear == "undefined")
+    this.clear = true;
+  else
+    this.clear = clear;
 }
 
 View.prototype.draw = function(elements)
 {
-  this.$container.empty();
+  if(this.clear)
+    this.$container.empty();
   for(var i = 0; i < elements.length; i ++) {
     // make sure element exists
     var element = elements[i];
     if(element) {
       this.$container.append($("<div style='z-index: " + element.getZIndex() +
                                "; color: " + element.getColour() +
-                               "; left: " + (element.position.x * this.scale) +
-                               "px; top: " + (element.position.y * this.scale)+
+                               "; left: " + (element.getPosition().x *
+                                             this.scale) +
+                               "px; top: " + (element.getPosition().y *
+                                              this.scale)+
                                "px'>" + element.getText() + "</div>"));
     }
   }
